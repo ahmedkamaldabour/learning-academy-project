@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\front\CourseController;
 use App\Http\Controllers\front\HomePageController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomePageController::class, 'index'])->name('front.homepage');
+
+// course controller routes in front folder
+Route::get('/category/{id}', [CourseController::class, 'category'])->name('front.category');
+Route::get('/course/{id}', [CourseController::class, 'singleCourse'])
+	->name('front.singleCourse');

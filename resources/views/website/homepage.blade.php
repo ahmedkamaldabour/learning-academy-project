@@ -5,7 +5,6 @@
 @section('css')
 @endsection
 
-{{--@section('headerClass','home_menu');--}}
 
 @section('content')
     <!-- banner part start-->
@@ -21,8 +20,6 @@
                             <p>Replenish seasons may male hath fruit beast were seas saw you arrie said man beast whales
                                 his void unto last session for bite. Set have great you'll male grass yielding yielding
                                 man</p>
-                            <a href="#" class="btn_1">View Course </a>
-                            <a href="#" class="btn_2">Get Started </a>
                         </div>
                     </div>
                 </div>
@@ -30,9 +27,8 @@
         </div>
     </section>
     <!-- banner part start-->
-
     <!-- feature_part start-->
-    <section class="feature_part">
+    <section class="feature_part  pb-5 ">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-xl-3 align-self-center">
@@ -106,50 +102,10 @@
     <!-- member_counter counter end -->
 
     <!--::courses_part start::-->
-    <section class="special_cource padding_top">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-5">
-                    <div class="section_tittle text-center">
-                        <p>popular courses</p>
-                        <h2>Special Courses</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                @foreach($courses as $course)
-                    {{--                {{dd($course->trainer)}}--}}
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="single_special_cource">
-                            <img src="{{asset("/uploaded/courses/$course->image")}}" class="special_img" alt="">
-                            <div class="special_cource_text">
-                                <a href="course-details.html" class="btn_4">{{$course->category->name}}</a>
-                                <h4>{{$course->price}} $</h4>
-                                <a href="course-details.html"><h3>{{$course->name}}</h3></a>
-                                <p>{{$course->small_description}}</p>
-                                <div class="author_info">
-                                    <div class="author_img">
-                                        <img style="width: 60px"
-                                             src="{{asset("/uploaded/trainer/" . $course->trainer->image)}}"
-                                             class="special_img" alt="">
-                                        <div class="author_info_text">
-                                            <p>Conduct by:</p>
-                                            <h5><a href="#">{{$course->trainer->name}}</a></h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
+    @include('website.partial.courses_part')
     <!--::courses_part end::-->
 
     <!--::review_part start::-->
-    //
     <section class="testimonial_part padding_top">
         <div class="container-fluid">
             <div class="row justify-content-center">
@@ -199,9 +155,11 @@
         </div>
     </section>
     <!--::review_part end::-->
+
     {{--    padding top --}}
     <section class="padding_top">
     </section>
+
 @endsection
 
 @section('js')

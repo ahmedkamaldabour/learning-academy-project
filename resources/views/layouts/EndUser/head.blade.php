@@ -23,6 +23,5 @@
     <link rel="stylesheet" href="{{asset('AssetsEndUser')}}/css/slick.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="{{asset('AssetsEndUser')}}/css/style.css">
-
     @yield('css')
 </head>
