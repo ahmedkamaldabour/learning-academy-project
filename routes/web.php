@@ -3,6 +3,8 @@
 use App\Http\Controllers\front\ContactController;
 use App\Http\Controllers\front\CourseController;
 use App\Http\Controllers\front\HomePageController;
+use App\Http\Controllers\front\MessageController;
+use App\Models\Message;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +26,7 @@ Route::get('/course/{id}', [CourseController::class, 'singleCourse'])
 	->name('front.singleCourse');
 // contact controller routes in front folder
 Route::get('/contact', [ContactController::class, 'index'])->name('front.contact');
+Route::post('/contact/newsletter', [MessageController::class, 'newsletter'])
+	->name('front.message.newsletter');
+Route::post('/contact/message', [MessageController::class, 'contact'])
+	->name('front.message.contact');

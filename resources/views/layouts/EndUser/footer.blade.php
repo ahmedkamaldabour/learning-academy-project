@@ -16,14 +16,21 @@
                     <h4>Newsletter</h4>
                     <p>Stay updated with our latest trends Seed heaven so said place winged over given forth fruit.
                     </p>
-                    <form action="#">
+                    @if ($errors->NewsLetter->any())
+                        @include('layouts.errorAndSuccessMessages', ['errorBag' => 'NewsLetter'])
+                    @endif
+                    <form action="{{route('front.message.newsletter')}}" method="post">
+                        @csrf
                         <div class="form-group">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder='Enter email address'
+                                <input type="email" name='email'  value="{{old('email')}}" class="form-control" placeholder='Enter email address'
                                        onfocus="this.placeholder = ''"
                                        onblur="this.placeholder = 'Enter email address'">
+                                {{--                                heidden input --}}
+                                <input type="hidden" name="newsletter" value="newsletter">
                                 <div class="input-group-append">
-                                    <button class="btn btn_1" type="button"><i class="ti-angle-right"></i></button>
+                                    <button class="btn btn_1" type="submit"><i
+                                                class="ti-angle-right"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -93,6 +100,9 @@
 <script src="{{asset('AssetsEndUser')}}/js/waypoints.min.js"></script>
 <!-- custom js -->
 <script src="{{asset('AssetsEndUser')}}/js/custom.js"></script>
+{{-- sweet alert --}}
+@include('sweetalert::alert')
+{{--<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>--}}
 {{--// another js--}}
 @yield('js')
 </body>

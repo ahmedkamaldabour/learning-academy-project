@@ -196,6 +196,8 @@ return [
 		App\Providers\RouteServiceProvider::class,
 		App\Providers\ViewServiceProvider::class,
 
+		RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+
 	],
 
 	/*
@@ -211,6 +213,8 @@ return [
 
 	'aliases' => Facade::defaultAliases()->merge([
 		// 'ExampleClass' => App\Example\ExampleClass::class,
+		'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+
 	])->toArray(),
 
 ];
