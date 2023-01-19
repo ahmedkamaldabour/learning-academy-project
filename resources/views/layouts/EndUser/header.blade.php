@@ -10,8 +10,7 @@
             <div class="col-lg-12">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <a class="navbar-brand" href="{{route('front.homepage')}}"> <img
-                                src="{{asset('AssetsEndUser')}}/img/logo.png"
-                                alt="logo"> </a>
+                                src="{{asset('uploaded')}}/settings/{{$settings->logo}}" alt="logo"> </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +33,7 @@
                             {{--                                <a class="nav-link" href="blog.html">Blog</a>--}}
                             {{--                            </li>--}}
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown" role="button"
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Courses
                                 </a>
@@ -49,7 +48,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact</a>
+                                <a class="nav-link" href="{{route('front.contact')}}">Contact</a>
                             </li>
                             {{--                            <li class="d-none d-lg-block">--}}
                             {{--                                <a class="btn_1" href="#">Get a Quote</a>--}}
