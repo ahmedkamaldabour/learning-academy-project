@@ -34,7 +34,7 @@ class HomePageController extends Controller
 		$this->category = $category;
 		$this->trainer = $trainer;
 		$this->student = $student;
-		$this->testimonial = $testimonial;
+		$this->testimonials = $testimonial;
 	}
 
 	public function index()
@@ -46,7 +46,7 @@ class HomePageController extends Controller
 		$trainers_count = $this->trainer::count();
 		$student_count = $this->student::count();
 		// get the testimonials
-		$testimonials = $this->testimonial::get();
+		$testimonials = $this->testimonials::get();
 		return view('website/homepage',
 			compact('courses', 'courses_count', 'trainers_count', 'student_count', 'testimonials'));
 	}

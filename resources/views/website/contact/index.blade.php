@@ -26,7 +26,7 @@
                 <div class="col-lg-8">
 
                     @if ($errors->contact->any())
-                        @include('layouts.errorAndSuccessMessages', ['errorBag' => 'contact'])
+                        @include('layouts.errorBag', ['errorBag' => 'contact'])
                     @endif
                     <form class="form-contact contact_form" action="{{route('front.message.contact')}}" method="post">
                         @csrf

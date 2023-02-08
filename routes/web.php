@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\TrainerController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\front\ContactController;
 use App\Http\Controllers\front\CourseController;
 use App\Http\Controllers\front\HomePageController;
@@ -19,7 +23,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomePageController::class, 'index'])->name('front.homepage');
-
 // course controller routes in front folder
 Route::get('/category/{id}', [CourseController::class, 'category'])->name('front.category');
 Route::get('/course/{id}', [CourseController::class, 'singleCourse'])
@@ -30,3 +33,19 @@ Route::post('/contact/newsletter', [MessageController::class, 'newsletter'])
 	->name('front.message.newsletter');
 Route::post('/contact/message', [MessageController::class, 'contact'])
 	->name('front.message.contact');
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+
+	Route::group(['middleware' => ['guest']], (function () {
+		Route::post('/login', [AuthController::class, 'auth'])->name('auth');
+		Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+	}));
+	Route::group(['middleware' => ['auth.admin']], (function () {
+		Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+		Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+		// resource controller routes in admin folder
+		Route::resource('/category', CategoryController::class)->except(methods:'show');
+		Route::resource('/trainers', TrainerController::class)->except(methods:'show');
+	}));
+
+});

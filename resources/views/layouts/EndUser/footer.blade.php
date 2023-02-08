@@ -17,13 +17,14 @@
                     <p>Stay updated with our latest trends Seed heaven so said place winged over given forth fruit.
                     </p>
                     @if ($errors->NewsLetter->any())
-                        @include('layouts.errorAndSuccessMessages', ['errorBag' => 'NewsLetter'])
+                        @include('layouts.errorBag', ['errorBag' => 'NewsLetter'])
                     @endif
                     <form action="{{route('front.message.newsletter')}}" method="post">
                         @csrf
                         <div class="form-group">
                             <div class="input-group mb-3">
-                                <input type="email" name='email'  value="{{old('email')}}" class="form-control" placeholder='Enter email address'
+                                <input type="email" name='email' value="{{old('email')}}" class="form-control"
+                                       placeholder='Enter email address'
                                        onfocus="this.placeholder = ''"
                                        onblur="this.placeholder = 'Enter email address'">
                                 {{--                                heidden input --}}
@@ -82,23 +83,24 @@
 <!-- jquery -->
 <script src="{{asset('AssetsEndUser')}}/js/jquery-1.12.1.min.js"></script>
 <!-- popper js -->
+<s
 <script src="{{asset('AssetsEndUser')}}/js/popper.min.js"></script>
-<!-- bootstrap js -->
+{{--<!-- bootstrap js -->--}}
 <script src="{{asset('AssetsEndUser')}}/js/bootstrap.min.js"></script>
-<!-- easing js -->
+{{--<!-- easing js -->--}}
 <script src="{{asset('AssetsEndUser')}}/js/jquery.magnific-popup.js"></script>
-<!-- swiper js -->
+{{--<!-- swiper js -->--}}
 <script src="{{asset('AssetsEndUser')}}/js/swiper.min.js"></script>
-<!-- swiper js -->
+{{--<!-- swiper js -->--}}
 <script src="{{asset('AssetsEndUser')}}/js/masonry.pkgd.js"></script>
-<!-- particles js -->
+{{--<!-- particles js -->--}}
 <script src="{{asset('AssetsEndUser')}}/js/owl.carousel.min.js"></script>
 <script src="{{asset('AssetsEndUser')}}/js/jquery.nice-select.min.js"></script>
-<!-- swiper js -->
+{{--<!-- swiper js -->--}}
 <script src="{{asset('AssetsEndUser')}}/js/slick.min.js"></script>
 <script src="{{asset('AssetsEndUser')}}/js/jquery.counterup.min.js"></script>
 <script src="{{asset('AssetsEndUser')}}/js/waypoints.min.js"></script>
-<!-- custom js -->
+{{--<!-- custom js -->--}}
 <script src="{{asset('AssetsEndUser')}}/js/custom.js"></script>
 {{-- sweet alert --}}
 @include('sweetalert::alert')
