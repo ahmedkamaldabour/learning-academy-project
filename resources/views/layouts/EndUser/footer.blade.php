@@ -83,7 +83,6 @@
 <!-- jquery -->
 <script src="{{asset('AssetsEndUser')}}/js/jquery-1.12.1.min.js"></script>
 <!-- popper js -->
-<s
 <script src="{{asset('AssetsEndUser')}}/js/popper.min.js"></script>
 {{--<!-- bootstrap js -->--}}
 <script src="{{asset('AssetsEndUser')}}/js/bootstrap.min.js"></script>

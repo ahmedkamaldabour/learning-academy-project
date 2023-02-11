@@ -49,6 +49,62 @@
                             </li>
                         </ul>
                     </div>
+                    <div class="my-5">
+                        <h4 class="title">Enroll the course</h4>
+                        <p>
+                            If you want to enroll this course, please fill the form below.
+                        </p>
+                        @if ($errors->enroll->any())
+                            @include('layouts.errorBag', ['errorBag' => 'enroll'])
+                        @endif
+                        @include('messages.flash')
+                        <form class="form-contact contact_form" action={{route('front.message.enroll')}}
+                              method="post">
+                            @csrf
+                            <div class="row">
+                                <input class="form-control" type="hidden" name="course_id" value="{{ $course->id }}">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="name" type="text"
+                                               onfocus="this.placeholder = ''"
+                                               onblur="this.placeholder = 'Enter your name'"
+                                               placeholder='Enter your name'>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="phone" type="text"
+                                               onfocus="this.placeholder = ''"
+                                               onblur="this.placeholder = 'Enter your phone'"
+                                               placeholder='Enter your phone'>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="email" type="email"
+                                               onfocus="this.placeholder = ''"
+                                               onblur="this.placeholder = 'Enter email address'"
+                                               placeholder='Enter email address'>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="specialized_at" type="text"
+                                               onfocus="this.placeholder = ''"
+                                               onblur="this.placeholder = 'Enter Speciality'"
+                                               placeholder='Enter Speciality'>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mt-3">
+                                <button type="submit" class="button button-contactForm btn_1">Enroll</button>
+                            </div>
+                        </form>
+
+                    </div>
+
                 </div>
             </div>
         </div>

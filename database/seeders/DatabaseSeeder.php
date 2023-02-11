@@ -23,12 +23,18 @@ class DatabaseSeeder extends Seeder
 		// ]);
 
 		// create admin user
-		User::factory()->create([
-			'name'              => 'Admin User',
-			'email'             => 'dabourdabour28@gmail.com',
-			'password'          => bcrypt('0482543245'),
-			'email_verified_at' => now(),
+		//		User::factory()->create([
+		//			'name'              => 'Admin User',
+		//			'email'             => 'dabourdabour28@gmail.com',
+		//			'password'          => bcrypt('0482543245'),
+		//			'email_verified_at' => now(),
+		//		]);
+
+		// Called course seeder
+		$this->call([
+			CourseSeeder::class,
 		]);
+
 
 	}
 }

@@ -8,14 +8,6 @@
                 data-accordion='false'>
                 <!-- Add icons to the links using the .nav-icon class
                                                          with font-awesome or any other icon font library -->
-                <li class='nav-item'>
-                    <a href='#' class='nav-link'>
-                        <i class='nav-icon fas fa-th'></i>
-                        <p>
-                            Test
-                        </p>
-                    </a>
-                </li>
 
                 <li class='nav-item'>
                     <a href='{{route('admin.category.index')}}' class='nav-link'>
@@ -30,6 +22,22 @@
                         <i class='nav-icon fas fa-th'></i>
                         <p>
                             Trainers
+                        </p>
+                    </a>
+                </li>
+                <li class='nav-item'>
+                    <a href='{{route('admin.courses.index')}}' class='nav-link'>
+                        <i class='nav-icon fas fa-th'></i>
+                        <p>
+                            Courses
+                        </p>
+                    </a>
+                </li>
+                <li class='nav-item'>
+                    <a href='{{route('admin.students.index')}}' class='nav-link'>
+                        <i class='nav-icon fas fa-th'></i>
+                        <p>
+                            Students
                         </p>
                     </a>
                 </li>

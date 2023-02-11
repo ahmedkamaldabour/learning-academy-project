@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    use HasFactory;
+	use HasFactory;
+
 	protected $fillable = ['name', 'email', 'phone', 'specialized_at'];
 
 	public function courses()
 	{
-		return $this->belongsToMany(Course::class);
+		return $this->belongsToMany(Course::class)->withPivot('status');
 	}
 
 	public function trainers()

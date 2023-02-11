@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\StudentController;
 use App\Http\Controllers\admin\TrainerController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\front\ContactController;
@@ -33,6 +34,8 @@ Route::post('/contact/newsletter', [MessageController::class, 'newsletter'])
 	->name('front.message.newsletter');
 Route::post('/contact/message', [MessageController::class, 'contact'])
 	->name('front.message.contact');
+// enroll controller routes in front folder
+Route::post('/contact/enroll', [MessageController::class, 'enroll'])->name('front.message.enroll');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
@@ -46,6 +49,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 		// resource controller routes in admin folder
 		Route::resource('/category', CategoryController::class)->except(methods:'show');
 		Route::resource('/trainers', TrainerController::class)->except(methods:'show');
+		Route::resource('/courses', \App\Http\Controllers\admin\CourseController::class)->except(methods:'show');
+		Route::resource('/students', StudentController::class);
+		Route::post('/students/{student}/approve/{course}', [StudentController::class, 'approve'])->name('students.approve');
+		Route::post('/students/{student}/reject/{course}', [StudentController::class, 'reject'])->name('students.reject');
+		Route::Post('/students/{student}/enroll', [StudentController::class, 'enroll'])->name('students.enroll');
+		Route::get('/students/{student}/enroll', [StudentController::class, 'enrollForm'])->name('students.enrollForm');
 	}));
 
 });
+
+
+
