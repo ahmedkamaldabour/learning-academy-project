@@ -8,7 +8,10 @@ use App\Models\Course;
 use App\Models\Student;
 use App\Models\Testimonial;
 use App\Models\Trainer;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use function alert;
+use function auth;
 use function dd;
 
 class CourseController extends Controller
@@ -16,13 +19,16 @@ class CourseController extends Controller
 
 	protected $course;
 	protected $category;
+	protected $wishlist;
 
 	public function __construct(
 		Course   $course,
-		Category $category,)
-	{
+		Category $category,
+		Wishlist $wishlist
+	) {
 		$this->course = $course;
 		$this->category = $category;
+		$this->wishlist = $wishlist;
 	}
 
 	public function category($id)
@@ -39,4 +45,29 @@ class CourseController extends Controller
 		$course = $this->course::findORfail($courseId);
 		return view('website/courses/singleCourse', compact('course'));
 	}
+
+	public function addToFavourite($id)
+	{
+		// get the course by id and add it to the wishlist table and redirect to the same page
+		$course = $this->course::findORfail($id);
+		$user = auth()->user()->id;
+		$this->wishlist::create([
+			'user_id'   => $user,
+			'course_id' => $id,
+		]);
+		alert()->success('Course added to your wishlist');
+		return back();
+	}
+
+	public function removeFromFavourite($id)
+	{
+		// get the course by id and remove it from the wishlist table and redirect to the same page
+		$course = $this->course::findORfail($id);
+		$user = auth()->user()->id;
+		$this->wishlist::where('user_id', $user)->where('course_id', $id)->delete();
+		alert()->success('Course removed from your wishlist');
+		return back();
+
+	}
+
 }

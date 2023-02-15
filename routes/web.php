@@ -9,34 +9,39 @@ use App\Http\Controllers\front\ContactController;
 use App\Http\Controllers\front\CourseController;
 use App\Http\Controllers\front\HomePageController;
 use App\Http\Controllers\front\MessageController;
+use App\Http\Controllers\front\WishlistController;
 use App\Models\Message;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::group(['prefix' => 'user', 'as' => 'front.'], function () {
+	Route::get('/', [HomePageController::class, 'index'])->name('homepage');
+	Route::get('/category/{id}', [CourseController::class, 'category'])->name('category');
+	Route::get('/course/{id}', [CourseController::class, 'singleCourse'])
+		->name('singleCourse');
+	Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+	Route::post('/contact/newsletter', [MessageController::class, 'newsletter'])
+		->name('message.newsletter');
+	Route::post('/contact/message', [MessageController::class, 'contact'])
+		->name('message.contact');
 
-Route::get('/', [HomePageController::class, 'index'])->name('front.homepage');
-// course controller routes in front folder
-Route::get('/category/{id}', [CourseController::class, 'category'])->name('front.category');
-Route::get('/course/{id}', [CourseController::class, 'singleCourse'])
-	->name('front.singleCourse');
-// contact controller routes in front folder
-Route::get('/contact', [ContactController::class, 'index'])->name('front.contact');
-Route::post('/contact/newsletter', [MessageController::class, 'newsletter'])
-	->name('front.message.newsletter');
-Route::post('/contact/message', [MessageController::class, 'contact'])
-	->name('front.message.contact');
-// enroll controller routes in front folder
-Route::post('/contact/enroll', [MessageController::class, 'enroll'])->name('front.message.enroll');
+	Route::group(['middleware' => ['guest']], (function () {
+		Route::get('/login', [HomePageController::class, 'login'])->name('login');
+		Route::get('/register', [HomePageController::class, 'register'])->name('register');
+		Route::post('/login', [AuthController::class, 'user_login'])->name('auth.login');
+		Route::post('/register', [AuthController::class, 'user_register'])->name('auth.register');
 
+	}));
+	Route::group(['middleware' => ['auth']], (function () {
+		Route::post('/contact/enroll', [MessageController::class, 'enroll'])->name('message.enroll');
+		Route::get('/logout', [AuthController::class, 'user_logout'])->name('auth.logout');
+		Route::get('course/{id}/fav/add', [CourseController::class, 'addToFavourite'])->name('course.add.favorite');
+		Route::get('course/{id}/fav/remove', [CourseController::class, 'removeFromFavourite'])->name('course.remove.favorite');
+		Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
+	}));
+
+});
+
+//---------------------Admin Routes---------------------
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
 	Route::group(['middleware' => ['guest']], (function () {
@@ -58,6 +63,3 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 	}));
 
 });
-
-
-

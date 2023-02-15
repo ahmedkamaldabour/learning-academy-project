@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use function alert;
+use function auth;
 use function dd;
 use function redirect;
 use function session;
@@ -31,8 +32,8 @@ class MessageController extends Controller
 	public function contact(ContactFormRequest $request)
 	{
 		Message::create([
-			'name'    => $request->name,
-			'email'   => $request->email,
+			'name'    => auth()->user()->name,
+			'email'   => auth()->user()->email,
 			'subject' => $request->subject,
 			'message' => $request->message,
 		]);
@@ -42,18 +43,22 @@ class MessageController extends Controller
 
 	public function enroll(EnrollRequest $request)
 	{
+		//		dd(auth()->user()->name);
+
 		// check if the student has already enrolled in a course
-		$student = Student::where('email', $request->email)->first();
+		$student = Student::where('email', auth()->user()->email)->first();
+		//		dd($request->all());
+
 		if (!$student) {
+			//			dd($student);
 			$student = Student::create([
-				'name'           => $request->name,
-				'email'          => $request->email,
+				'name'           => auth()->user()->name,
+				'email'          => auth()->user()->email,
 				'phone'          => $request->phone,
 				'specialized_at' => $request->specialized_at,
 			]);
 		} else {
 			$student->update([
-				'name'           => $request->name,
 				'phone'          => $request->phone,
 				'specialized_at' => $request->specialized_at,
 			]);

@@ -48,60 +48,66 @@
                                 </a>
                             </li>
                         </ul>
+                        @if(auth()->check())
+                            @if($course->isFavorite($course->id))
+                                <a href="{{route('front.course.remove.favorite', $course->id)}}" class="btn btn-danger">Remove
+                                    from favorite</a>
+                            @else
+                                <a href="{{route('front.course.add.favorite', $course->id)}}"
+                                   class="btn btn-primary">Add to
+                                    favorite</a>
+                            @endif
+                        @endif
                     </div>
                     <div class="my-5">
                         <h4 class="title">Enroll the course</h4>
                         <p>
                             If you want to enroll this course, please fill the form below.
                         </p>
-                        @if ($errors->enroll->any())
-                            @include('layouts.errorBag', ['errorBag' => 'enroll'])
-                        @endif
-                        @include('messages.flash')
-                        <form class="form-contact contact_form" action={{route('front.message.enroll')}}
+                        @if(auth()->check())
+                            @if ($errors->enroll->any())
+                                @include('layouts.errorBag', ['errorBag' => 'enroll'])
+                            @endif
+                            @include('messages.flash')
+                            <form class="form-contact contact_form" action={{route('front.message.enroll')}}
                               method="post">
-                            @csrf
-                            <div class="row">
-                                <input class="form-control" type="hidden" name="course_id" value="{{ $course->id }}">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <input class="form-control" name="name" type="text"
-                                               onfocus="this.placeholder = ''"
-                                               onblur="this.placeholder = 'Enter your name'"
-                                               placeholder='Enter your name'>
+                                @csrf
+                                <div class="row">
+                                    <input class="form-control" type="hidden" name="course_id"
+                                           value="{{ $course->id }}">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <input class="form-control" disabled type="email"
+                                                   value="{{auth()->user()->email}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <input class="form-control" name="phone" type="text"
+                                                   onfocus="this.placeholder = ''"
+                                                   onblur="this.placeholder = 'Enter your phone'"
+                                                   placeholder='Enter your phone'>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <input class="form-control" name="specialized_at" type="text"
+                                                   onfocus="this.placeholder = ''"
+                                                   onblur="this.placeholder = 'Enter Speciality'"
+                                                   placeholder='Enter Speciality'>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <input class="form-control" name="phone" type="text"
-                                               onfocus="this.placeholder = ''"
-                                               onblur="this.placeholder = 'Enter your phone'"
-                                               placeholder='Enter your phone'>
-                                    </div>
+                                <div class="form-group mt-3">
+                                    <button type="submit" class="button button-contactForm btn_1">Enroll</button>
                                 </div>
-
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <input class="form-control" name="email" type="email"
-                                               onfocus="this.placeholder = ''"
-                                               onblur="this.placeholder = 'Enter email address'"
-                                               placeholder='Enter email address'>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <input class="form-control" name="specialized_at" type="text"
-                                               onfocus="this.placeholder = ''"
-                                               onblur="this.placeholder = 'Enter Speciality'"
-                                               placeholder='Enter Speciality'>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group mt-3">
-                                <button type="submit" class="button button-contactForm btn_1">Enroll</button>
-                            </div>
-                        </form>
+                            </form>
+                        @else
+                            <p>
+                                You have to log in to enroll this course.
+                            </p>
+                            <a href="{{route('front.login')}}" class="btn btn-primary">Login</a>
+                        @endif
 
                     </div>
 

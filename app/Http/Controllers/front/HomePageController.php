@@ -50,4 +50,15 @@ class HomePageController extends Controller
 		return view('website/homepage',
 			compact('courses', 'courses_count', 'trainers_count', 'student_count', 'testimonials'));
 	}
+
+	public function login()
+	{
+		return view('website/reg-login/login');
+	}
+
+	public function register()
+	{
+		return view('website/reg-login/reg');
+	}
+
 }

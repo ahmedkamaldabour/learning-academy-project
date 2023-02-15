@@ -26,8 +26,6 @@ class EnrollRequest extends FormRequest
 	public function rules()
 	{
 		return [
-			'name'           => 'required|string|min:3|max:255',
-			'email'          => 'required|email',
 			'phone'          => 'required|numeric',
 			'specialized_at' => 'nullable|string|min:3|max:255',
 			'course_id'      => 'required|numeric|exists:courses,id',
