@@ -55,7 +55,7 @@
                             @if(auth()->guard('web')->check())
                                 <li class="nav-item">
 
-                                    <a class="nav-link" href="#">My Course</a>
+                                    <a class="nav-link" href="{{route('front.courses.studentCourses')}}">My Course</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"

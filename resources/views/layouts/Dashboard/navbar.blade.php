@@ -18,6 +18,10 @@
         <!-- Right navbar links -->
         <ul class='navbar-nav ml-auto'>
             <!-- Navbar Search -->
+            {{--            add new admin --}}
+            <li class='nav-item'>
+                <a href="{{route('admin.admins.index')}}" class='nav-link'>Admins</a>
+            </li>
             <li class='nav-item'>
                 <form action="{{route('admin.auth.logout')}}" method="get">
                     @csrf

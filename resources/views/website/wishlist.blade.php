@@ -29,7 +29,7 @@
                                     <img class="img-fluid" src="{{asset("/uploaded/courses/$course->image")}}" alt="">
                                 </div>
                                 <div class="course_content">
-                                    <h4 class="mb-3">
+                                    <h4 class="mt-3">
                                         <a href="{{route('front.singleCourse', $course->id)}}">{{$course->name}}</a>
                                     </h4>
                                     <p>

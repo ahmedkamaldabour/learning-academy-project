@@ -13,7 +13,6 @@ class WishlistController extends Controller
 		$wishlist = Wishlist::with('course')->where('user_id', auth()->user()->id)->get();
 		$courses = $wishlist->pluck('course');
 		return view('website/wishlist', compact('courses'));
-
 	}
 }
 

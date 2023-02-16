@@ -9,6 +9,7 @@ use App\Models\Student;
 use App\Models\Testimonial;
 use App\Models\Trainer;
 use App\Models\Wishlist;
+use DB;
 use Illuminate\Http\Request;
 use function alert;
 use function auth;
@@ -68,6 +69,19 @@ class CourseController extends Controller
 		alert()->success('Course removed from your wishlist');
 		return back();
 
+	}
+
+	public function studentCourses()
+	{
+		// get the courses of the student
+		$student_email = auth()->user()->email;
+		$student = Student::where('email', $student_email)->first();
+		if (!$student) {
+			return redirect()->route('front.homepage');
+		}
+		$courses = $student->courses;
+
+		return view('website/courses/studentCourses', compact('courses'));
 	}
 
 }

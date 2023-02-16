@@ -159,7 +159,7 @@ class StudentController extends Controller
 		// validate request
 		$request->validate([
 			// check the sudent can enroll in this course
-			'course_id' => 'required|exists:courses,id,not_enrolled_student_id,'.$student->id,
+			'course_id' => 'required',
 		]);
 		// check is student exist
 		$studentExist = DB::table('course_student')

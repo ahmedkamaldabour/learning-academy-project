@@ -24,7 +24,7 @@
                                 <div class="author_img">
                                     <img style="width: 60px"
                                          src="{{asset("/uploaded/trainer/" . $course->trainer->image)}}"
-                                         class="special_img" alt="">
+                                         class="special_img mr-5" alt="">
                                     <div class="author_info_text">
                                         <p>Conduct by:</p>
                                         <h5><a>{{$course->trainer->name}}</a></h5>

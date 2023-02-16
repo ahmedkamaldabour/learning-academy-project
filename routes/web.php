@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\AdminConroller;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\StudentController;
@@ -31,12 +32,15 @@ Route::group(['prefix' => 'user', 'as' => 'front.'], function () {
 		Route::post('/register', [AuthController::class, 'user_register'])->name('auth.register');
 
 	}));
+
 	Route::group(['middleware' => ['auth']], (function () {
 		Route::post('/contact/enroll', [MessageController::class, 'enroll'])->name('message.enroll');
 		Route::get('/logout', [AuthController::class, 'user_logout'])->name('auth.logout');
 		Route::get('course/{id}/fav/add', [CourseController::class, 'addToFavourite'])->name('course.add.favorite');
 		Route::get('course/{id}/fav/remove', [CourseController::class, 'removeFromFavourite'])->name('course.remove.favorite');
 		Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
+		//		Route::get('/profile', [HomePageController::class, 'profile'])->name('profile');
+		Route::get('/courses/enrolment', [CourseController::class, 'studentCourses'])->name('courses.studentCourses');
 	}));
 
 });
@@ -51,6 +55,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 	Route::group(['middleware' => ['auth.admin']], (function () {
 		Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 		Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+		Route::resource('admins', AdminConroller::class)->except(methods:'show');
 		// resource controller routes in admin folder
 		Route::resource('/category', CategoryController::class)->except(methods:'show');
 		Route::resource('/trainers', TrainerController::class)->except(methods:'show');
