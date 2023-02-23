@@ -1,5 +1,7 @@
 <aside class='main-sidebar sidebar-dark-primary elevation-4'>
-
+    <a href="{{route('admin.dashboard')}}" class="brand-link">
+        <span class="brand-text font-weight-light">Dabour</span>
+    </a>
     <!-- Sidebar -->
     <div class='sidebar'>
         <!-- Sidebar Menu -->

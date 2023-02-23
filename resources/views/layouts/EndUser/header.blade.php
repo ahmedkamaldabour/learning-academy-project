@@ -64,7 +64,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="{{route('front.wishlist')}}">Wishlist</a>
-                                        <a class="dropdown-item" href="#">Profile</a>
+                                        <a class="dropdown-item" href="{{route('front.profile')}}">Profile</a>
                                         <a class="dropdown-item" href="{{route('front.auth.logout')}}">Logout</a>
                                     </div>
                                 </li>

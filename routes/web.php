@@ -39,7 +39,8 @@ Route::group(['prefix' => 'user', 'as' => 'front.'], function () {
 		Route::get('course/{id}/fav/add', [CourseController::class, 'addToFavourite'])->name('course.add.favorite');
 		Route::get('course/{id}/fav/remove', [CourseController::class, 'removeFromFavourite'])->name('course.remove.favorite');
 		Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
-		//		Route::get('/profile', [HomePageController::class, 'profile'])->name('profile');
+		Route::get('/profile', [HomePageController::class, 'profile'])->name('profile');
+		Route::post('/profile', [HomePageController::class, 'changeProfileInfo'])->name('changeProfileInfo');
 		Route::get('/courses/enrolment', [CourseController::class, 'studentCourses'])->name('courses.studentCourses');
 	}));
 
