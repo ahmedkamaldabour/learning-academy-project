@@ -16,7 +16,7 @@ return new class extends Migration {
 			$table->id();
 			$table->string('name');
 			$table->double('price');
-			$table->string('small-description');
+			$table->string('small_description');
 			$table->text('description');
 			$table->string('image');
 			$table->foreignId('category_id')->references('id')->on('categories')
